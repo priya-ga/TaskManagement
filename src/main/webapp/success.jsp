@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<%
 		if ((session.getAttribute("username") == null)
@@ -52,7 +55,7 @@
 
 	</form>
 
-	<a href='logout.jsp'>Log out</a>
+	<a href="UserController?action=logout">Log Out</a>
 	<%} %>
 </body>
 </html>

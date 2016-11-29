@@ -14,7 +14,8 @@ public class Validate
 {
     public static boolean checkUser(String uname,String pass) 
     {
-     boolean st =false;
+    	
+    	boolean st =false;
      try{
 
         Connection con=DBUtil.getConnection();

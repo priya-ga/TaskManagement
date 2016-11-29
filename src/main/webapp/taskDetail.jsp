@@ -1,3 +1,4 @@
+<%@page import="com.todo.util.DBUtil"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,13 +12,16 @@
 <body>
 	<table>
 		<thead>
-			<%-- <%
-				HttpSession httpSession = request.getSession();
+			<%
+				if (session != null) {
+						if (session.getAttribute("username") != null) {
+							String name = (String) session.getAttribute("username");
 
-				System.out.println("username"
-						+ httpSession.getAttribute("username"));
-				String userName = (String) httpSession.getAttribute("username");
-			%> --%>
+						} else {
+							response.sendRedirect("index.jsp");
+						}
+					}
+			%>
 			<tr>
 				Task Name:
 				<c:out value="${task.taskName}" />
@@ -25,21 +29,13 @@
 			</br>
 			<tr>
 				Task Description:
+
 				<c:out value="${task.taskDescription}" />
+
 			</tr>
 
-			<tr>
-				Task ID:
-				<c:out value="${task.taskId}" />
-			</tr>
 
-			<%-- <sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver"
-				url="jdbc:mysql://localhost:3306/TaskManagement" user="root"
-				password="root" />
 
-			<sql:query var="listUserTasks" dataSource="${myDS}">
-        SELECT * FROM usertask;
-    </sql:query> --%>
 			<form method="post" ,value="viewAllUsersLog.jsp">
 				<div align="center">
 					<tr>
@@ -55,9 +51,10 @@
 						<thread>
 						<tr>
 							<th>User Name</th>
-							<th>Log Start Time</th>
-							<th>Log End Time</th>
+							<th>Log Start Time(In hour)</th>
+							<th>Log End Time(In hour)</th>
 							<th>Log Description</th>
+							<th>Total Duration(In hour)</th>
 
 						</tr>
 
@@ -69,6 +66,7 @@
 									<td><c:out value="${usertask.logStartTime}" /></td>
 									<td><c:out value="${usertask.logEndTime}" /></td>
 									<td><c:out value="${usertask.logDescription}" /></td>
+									<td><c:out value="${usertask.totalDuration}" /></td>
 
 								</tr>
 							</c:forEach>
@@ -77,21 +75,37 @@
 
 					</table>
 
-					<table>
-						<tr>
-							<td><a
-								href="HomeController?action=addWorklog&taskId=<c:out value="${task.taskId}"/>">Add
-									Worklog</a></td>
-						</tr>
+					<%-- <table>
 
-					</table>
+						<%
+						Connection con = DBUtil.getConnection();
+							st=con.createStatement();
+						rs=st.executeQuery("select totalDuration from TaskManagement");
+						
+						while(rs.next())
+						{
+							totalDuration += rs.getString("totalDuration");
+						}%>
+										<tr>Total Duration of this task is:<td><%=totalDuration%></td>
+										</tr>
+									</table>
+ --%>
+									<table>
+										<tr>
+											<td><a
+												href="HomeController?action=addWorklog&taskId=<c:out value="${task.taskId}"/>">Add
+													Worklog</a></td>
+										</tr>
+
+									</table>
 
 
-				</div>
-			</form>
+								</div>
+							</form>
 
-			<p>
-				<a href="HomeController?action=HomePage">Home Page</a>
-			</p>
-</body>
-</html>
+							<p>
+								<a href="HomeController?action=HomePage">Home Page</a>
+							</p>
+						</body>
+						</html>
+						

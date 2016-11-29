@@ -47,6 +47,13 @@ public class Task {
 	public void setTaskCreationDate(String taskCreationDate) {
 		this.taskCreationDate = taskCreationDate;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Task [taskId=" + taskId + ", taskName=" + taskName
+				+ ", taskDescription=" + taskDescription
+				+ ", taskCreationDate=" + taskCreationDate + ", userId="
+				+ userId + "]";
+	}
 
 }

@@ -28,6 +28,7 @@ public class HomeController extends HttpServlet {
 	public static final String list_task = "/listTask.jsp";
 	public static final String insert_or_edit = "/task.jsp";
 	public static final String Home_page = "/success.jsp";
+	public static final String Error_Page = "/error.jsp";
 
 	public HomeController() {
 		taskDaoImpl = new TaskDAOImpl();
@@ -35,20 +36,32 @@ public class HomeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		String forward = "";
 		String action = request.getParameter("action");
 		System.out.println("****" + action);
-		System.out.println("userId::" + request.getParameter("userId"));
+		System.out.println("userId :::::" + request.getParameter("userId"));
 		// int hidden = Integer.parseInt(request.getParameter("userId"));
 
 		// dao.setUserId(hidden);
 		// Task.setUserId(request.getParameter("userId"));
 
-		HttpSession httpSession = request.getSession();
+		HttpSession httpSession = request.getSession(true);
+		RequestDispatcher view1 = request.getRequestDispatcher(forward);
+
+		if (httpSession == null) {
+			System.err.println("session not available");
+			forward = Error_Page;
+			view1.forward(request, response);
+		}
 
 		System.out.println("username" + httpSession.getAttribute("username"));
 		String userName = (String) httpSession.getAttribute("username");
 		System.out.println("username ::" + userName);
+		/*
+		 * if (userName == null) { //response.sendRedirect("error.jsp"); forward
+		 * = Error_Page; view.forward(request, response); }
+		 */
 		User sessionUser = Validate.getUserByuserName(userName);
 
 		if (action.equalsIgnoreCase("delete")) {
@@ -69,6 +82,7 @@ public class HomeController extends HttpServlet {
 			int taskId = Integer.parseInt(request.getParameter("taskId"));
 			System.out.println("taskId::" + taskId);
 			Task task = taskDaoImpl.getTask(taskId);
+			System.out.println("I m that task :" + task);
 			TaskServiceImpl taskservice = new TaskServiceImpl();
 			List<UserTask> usertaskList = taskservice.getAllUserTaskList(task
 					.getTaskId());
@@ -90,10 +104,12 @@ public class HomeController extends HttpServlet {
 				userTaskDTO.setUserName(user.getUname());
 				userTaskDTO.setLogStartTime(usertask.getLogStartTime());
 				userTaskDTO.setLogEndTime(usertask.getLogEndTime());
-				userTaskDTO.setLogDescription(usertask.logDescription);
+				userTaskDTO.setLogDescription(usertask.getLogDescription());
+				userTaskDTO.setTotalDuration(usertask.getTotalDuration());
 				usertaskDTOList.add(userTaskDTO);
 
 			}
+
 			System.out.println("usertakList size ::" + usertaskDTOList.size());
 			request.setAttribute("userTaskDTOList", usertaskDTOList);
 
@@ -113,7 +129,7 @@ public class HomeController extends HttpServlet {
 
 			request.setAttribute("UserName", sessionUser.getUname());
 
-			forward = "worklog.jsp";
+			forward = "/worklog.jsp";
 		} else if (action.equalsIgnoreCase("HomePage")) {
 			forward = Home_page;
 		} else {
@@ -130,7 +146,7 @@ public class HomeController extends HttpServlet {
 		String taskId = request.getParameter("taskId");
 
 		System.out.println("in save task");
-		HttpSession httpSession = request.getSession();
+		HttpSession httpSession = request.getSession(true);
 
 		System.out.println("username" + httpSession.getAttribute("username"));
 

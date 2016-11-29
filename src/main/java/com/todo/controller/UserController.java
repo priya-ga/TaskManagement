@@ -28,6 +28,17 @@ public class UserController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String action = (String) request.getParameter("action");
+		System.out.println("I am : " + action);
+		if(action.equalsIgnoreCase("logout")){
+			PrintWriter out = response.getWriter();
+			out.println("thanq you!!, Your session was destroyed successfully!!");
+			HttpSession session = request.getSession(false);
+			// session.setAttribute("user", null);
+			session.removeAttribute("username");
+			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+			view.forward(request, response);
+		}
 
 	}
 
@@ -40,9 +51,12 @@ public class UserController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
+		  
 		
 		String username = request.getParameter("uname");
 		String pwd = request.getParameter("pass");
+		
+		boolean valid = (username != null) && username.matches("[A-Za-z0-9_]+");
 		
 		if( username== "admin" && pwd== "admin" )
 		{
@@ -50,12 +64,11 @@ public class UserController extends HttpServlet {
 			RequestDispatcher rs = request.getRequestDispatcher("success.jsp");
 			rs.include(request, response);
 		}
-		if (Validate.checkUser(username, pwd)) 
+		if (valid== true && Validate.checkUser(username, pwd)) 
 		{
 			System.out.println("Inside if condition !! ");
 			HttpSession httpSession =request.getSession();
 			httpSession.setAttribute("username", username);
-			httpSession.setAttribute("pwd", pwd);
 			RequestDispatcher rs = request.getRequestDispatcher("success.jsp");
 			rs.forward(request, response);
 		} 

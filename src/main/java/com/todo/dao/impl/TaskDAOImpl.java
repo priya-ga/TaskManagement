@@ -68,6 +68,7 @@ public class TaskDAOImpl implements ITaskDAO {
 
 				task.setTaskId(resultSet.getInt("taskId"));
 				task.setTaskName(resultSet.getString("taskName"));
+				task.setTaskDescription(resultSet.getString("taskDescription"));
 
 			}
 			resultSet.close();
@@ -146,6 +147,7 @@ public class TaskDAOImpl implements ITaskDAO {
 				userTask.setLogStartTime(resultSet.getInt("logStartTime"));
 				userTask.setLogEndTime(resultSet.getInt("logEndTime"));
 				userTask.setLogDescription(resultSet.getString("logDescription"));
+				userTask.setTotalDuration(resultSet.getInt("totalDuration"));
 				userList.add(userTask);
 			}
 
@@ -180,29 +182,7 @@ public class TaskDAOImpl implements ITaskDAO {
 
 	}
 
-//	@Override
-//	public User getUserByUserId(int userId) {
-//		
-//		System.out.println("in getUser by UserId");
-//		boolean st =false;
-//		User dbUser = new User();
-//		 try{
-//		
-//        
-//        PreparedStatement ps =conn.prepareStatement("select * from user where userid=?");
-//        ps.setInt(1, userId);
-//        ResultSet rs =ps.executeQuery();
-//        st = rs.next();
-//        	dbUser.setUname(rs.getString("userName"));
-//        	dbUser.setEmail(rs.getString("email"));
-//        	dbUser.setUname(rs.getString("uname"));
-//		 }catch(Exception e)
-//	     {
-//	         e.printStackTrace();
-//	     }
-//        	System.out.println("dbUser ::"+dbUser);
-//		return dbUser;
-//	}
+//	
 
 
 }

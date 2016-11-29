@@ -7,6 +7,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Show All usertasks</title>
 </head>
+
+<%
+		if (session != null) {
+			if (session.getAttribute("username") != null) {
+				String name = (String) session.getAttribute("username");
+				out.print("Hello, " + name + "  Welcome to ur Profile");
+			} else {
+				response.sendRedirect("index.jsp");
+			}
+		}
+	%>
+
 <body>
 	<table>
 		<thead>

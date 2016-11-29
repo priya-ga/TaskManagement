@@ -9,6 +9,19 @@
 <title>Add Worklog</title>
 </head>
 <body>
+
+<%
+		if (session != null) {
+			if (session.getAttribute("username") != null) {
+				String name = (String) session.getAttribute("username");
+				out.print("Hello, " + name + "  Welcome to ur Profile");
+			} else {
+				response.sendRedirect("index.jsp");
+			}
+		}
+	%>
+	
+	
     <form action="UserTaskController" method="post">
         <fieldset>
             <div>

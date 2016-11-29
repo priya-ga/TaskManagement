@@ -9,6 +9,15 @@ public class UserTask {
 	public int logStartTime;
 	public int logEndTime;
 	public String logDescription;
+	public int totalDuration;
+
+	public int getTotalDuration() {
+		return totalDuration;
+	}
+
+	public void setTotalDuration(int totalDuration) {
+		this.totalDuration = totalDuration;
+	}
 
 	public int getTaskId() {
 		return taskId;

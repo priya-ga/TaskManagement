@@ -4,17 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<title>Insert title here</title>
 </head>
 <body>
-<%
-
-request.getSession().removeAttribute("username");
-session.invalidate();
-
-
-response.sendRedirect("index.jsp");
-
-%>
+Error Page
 </body>
 </html>

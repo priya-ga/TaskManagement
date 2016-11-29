@@ -8,6 +8,15 @@ public class UserTaskDTO {
 	int logStartTime;
 	int logEndTime;
 	String logDescription;
+	int totalDuration;
+
+	public int getTotalDuration() {
+		return totalDuration;
+	}
+
+	public void setTotalDuration(int totalDuration) {
+		this.totalDuration = totalDuration;
+	}
 
 	public int getTaskId() {
 		return taskId;
