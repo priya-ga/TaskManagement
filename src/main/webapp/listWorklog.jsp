@@ -20,6 +20,7 @@
 	%>
 
 <body>
+ <%@include file="header.jsp" %>
 	<table>
 		<thead>
 			<tr>
@@ -42,7 +43,7 @@
 		</tbody>
 	</table>
 	<p>
-		<a href="WorklogController?action=insert">Add Student</a>
+		<a href="WorklogController?action=insert">Add Worklog</a>
 	</p>
 </body>
 </html>

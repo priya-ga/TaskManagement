@@ -10,8 +10,9 @@
 <title>Show All Tasks</title>
 </head>
 <body>
-	<table>
-		<thead>
+ <%@include file="header.jsp" %>
+	
+	
 			<%
 				if (session != null) {
 						if (session.getAttribute("username") != null) {
@@ -22,19 +23,11 @@
 						}
 					}
 			%>
-			<tr>
-				Task Name:
-				<c:out value="${task.taskName}" />
-			</tr>
+			<table>
+			<tr>Task Name:<c:out value="${task.taskName}" /></tr>
 			</br>
-			<tr>
-				Task Description:
-
-				<c:out value="${task.taskDescription}" />
-
-			</tr>
-
-
+			<tr>Task Description:<c:out value="${task.taskDescription}" /></tr>
+			</table>
 
 			<form method="post" ,value="viewAllUsersLog.jsp">
 				<div align="center">
@@ -71,29 +64,15 @@
 								</tr>
 							</c:forEach>
 						</tbody>
-						</thread>
+						
 
 					</table>
 
-					<%-- <table>
-
-						<%
-						Connection con = DBUtil.getConnection();
-							st=con.createStatement();
-						rs=st.executeQuery("select totalDuration from TaskManagement");
-						
-						while(rs.next())
-						{
-							totalDuration += rs.getString("totalDuration");
-						}%>
-										<tr>Total Duration of this task is:<td><%=totalDuration%></td>
-										</tr>
-									</table>
- --%>
+					
 									<table>
 										<tr>
 											<td><a
-												href="HomeController?action=addWorklog&taskId=<c:out value="${task.taskId}"/>">Add
+												href="home?action=addWorklog&taskId=<c:out value="${task.taskId}"/>">Add
 													Worklog</a></td>
 										</tr>
 
@@ -103,9 +82,7 @@
 								</div>
 							</form>
 
-							<p>
-								<a href="HomeController?action=HomePage">Home Page</a>
-							</p>
+							
 						</body>
 						</html>
 						

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
 </head>
 <body>
 
@@ -12,27 +12,24 @@
 
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<%
-		if ((session.getAttribute("username") == null)
-				|| (session.getAttribute("pwd") == "")) {
+	    if ((session.getAttribute("username") == null) || (session.getAttribute("pwd") == "")) {
 	%>
 	You are not logged in
 	<br />
 	<a href="index.jsp">Please Login</a>
 	<%
-		} else {
+	    } else {
 	%>
 	Welcome
-	<%-- <%=session.getAttribute(name) %> --%>
 	<%=session.getAttribute("username")%>
 
-	<form method="post" action="HomeController">
+	<form method="get" action="home">
 		<center>
 			<table border="1" width="30%" cellpadding="5">
 				<thead>
 					<tr>
 						<th colspan="2"><a
-							href="${contextPath}/TaskManagement/listTask.jsp">Create
-								Task</a></th>
+							href="home?action=getList">Create Task</a></th>
 					</tr>
 				</thead>
 
@@ -40,14 +37,13 @@
 			</table>
 		</center>
 	</form>
-	<form method="post" action="HomeController">
+	<form method="post" action="home">
 		<center>
 			<table>
-			<thead>
+				<thead>
 					<tr>
 						<th colspan="2"><a
-							href="${contextPath}/TaskManagement/viewTask.jsp">View
-								Task</a></th>
+							href="home?action=getListForDetail">View Task</a></th>
 					</tr>
 				</thead>
 			</table>
@@ -55,7 +51,9 @@
 
 	</form>
 
-	<a href="UserController?action=logout">Log Out</a>
-	<%} %>
+
+	<%
+	    }
+	%>
 </body>
 </html>

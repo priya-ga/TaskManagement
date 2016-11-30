@@ -4,7 +4,7 @@
 <html>
 <head>
 
-<title>Insert title here</title>
+<title>Welcome</title>
 </head>
 <body>
 Registration is Successful.

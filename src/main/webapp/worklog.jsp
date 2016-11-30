@@ -9,7 +9,7 @@
 <title>Add Worklog</title>
 </head>
 <body>
-
+ <%@include file="header.jsp" %>
 <%
 		if (session != null) {
 			if (session.getAttribute("username") != null) {
@@ -22,25 +22,25 @@
 	%>
 	
 	
-    <form action="UserTaskController" method="post">
+    <form action="UserTask" method="post">
         <fieldset>
             <div>
-                <label for="userId">User ID</label> <input type="text"
+                <label for="userId"></label> <input type="hidden"
                     name="userId" value="<c:out value="${userID}" />"
                     readonly="readonly" placeholder="User ID" />
             </div>
             <div>
-                <label for="taskId">Task ID</label> <input type="text"
+                <label for="taskId"></label> <input type="hidden"
                     name="taskId" value="<c:out value="${task.taskId}" />"
                     readonly="readonly" placeholder="Task ID" />
             </div>
             <div>
-                <label for="logStartTime">Log Start Time</label> <input type="text"
+                <label for="logStartTime">Log Start Time</label> <input type="datetime-local"
                     name="logStartTime" value="<c:out value="${usertask.logStartTime}" />"
                     placeholder="Log Start Time" />
             </div>
             <div>
-                <label for="logEndTime">Log End Time</label> <input type="text" name="logEndTime"
+                <label for="logEndTime">Log End Time</label> <input type="datetime-local" name="logEndTime"
                     value="<c:out value="${usertask.logEndTime}" />" placeholder="Log End Time" />
             </div>
             <div>

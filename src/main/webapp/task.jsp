@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <%@include file="header.jsp" %>
 	<%
 		if (session != null) {
 			if (session.getAttribute("username") != null) {
@@ -18,15 +19,15 @@
 			}
 		}
 	%>
-	<form action="HomeController" method="post">
+	<form action="home" method="post">
 		<fieldset>
 
 			 <div>
 
-				<label for="taskId">Task ID</label> <input type="text" name="taskId"
+				<label for="taskId"></label> <input type="hidden"  name="taskId"
 					value="<c:out value="${task.taskId}" />" readonly="readonly"
 					placeholder="Task ID" />
-			</div> --
+			</div> 
 			
 			<%-- <input type="hidden"  name="userId" value="${task.userId}">  --%>
 			

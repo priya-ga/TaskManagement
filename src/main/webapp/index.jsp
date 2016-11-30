@@ -8,6 +8,7 @@
         <title>TaskManagement</title>
     </head>
     <body>
+   
         <form method="post" action="user?action=login">
             <center>
             <table border="1" width="30%" cellpadding="3">
@@ -19,12 +20,12 @@
                 <tbody>
                     <tr>
                         <td>User Name</td>
-                        <td><input type="text" name="uname" /></td>
+                        <td><input type="text" name="uname" required /></td>
                      
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="password" name="pass" /></td>
+                        <td><input type="password" name="pass" required/></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Login" /></td>

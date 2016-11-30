@@ -63,7 +63,7 @@ String userName = (String) httpSession.getAttribute("username"); %>
 						</tbody>
 					</table>
 			<td><a
-				href="HomeController?action=addWorklog&taskId=<c:out value="${task.taskId}"/>">Add Worklog</a></td>
+				href="home?action=addWorklog&taskId=<c:out value="${task.taskId}"/>">Add Worklog</a></td>
 			</tr>
 			</thread>
 	</table>
@@ -72,9 +72,7 @@ String userName = (String) httpSession.getAttribute("username"); %>
 	</div>
 	</form>
 
-	<p>
-		<a href="HomeController?action=HomePage">Home Page</a>
-	</p>
+	
 
 </body>
 </html>

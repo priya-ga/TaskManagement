@@ -3,7 +3,6 @@ package com.todo.dao;
 import java.util.List;
 
 import com.todo.model.Task;
-import com.todo.model.User;
 import com.todo.model.UserTask;
 
 public interface ITaskDAO 
@@ -22,8 +21,5 @@ public interface ITaskDAO
 
 	void addUserTask(UserTask usertask);
 	
-//	User getUserByUserId( int userId);
-
-//	void getStartEndTime(UserTask usertask);
 
 }

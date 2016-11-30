@@ -5,22 +5,20 @@ import java.util.List;
 import com.todo.model.Task;
 import com.todo.model.UserTask;
 
-public interface ITaskService 
-{
+public interface ITaskService {
 
-	public void saveOrUpdateTask(Task task);
+    void saveOrUpdateTask(Task task);
 
-	public void deleteTask(int taskid);
+    void deleteTask(int taskid);
 
-	public Task getTask(int taskid);
+    Task getTask(int taskid);
 
-	public List<Task> getUserTaskList();
+    List<Task> getUserTaskList();
 
-	public void updateTask(Task task);
+    void updateTask(Task task);
 
-	public List<UserTask> getAllUserTaskList(int taskId);
+    List<UserTask> getAllUserTaskList(int taskId);
 
-	public void addUserTask(UserTask usertask);
+    void addUserTask(UserTask usertask);
 
-	
 }
